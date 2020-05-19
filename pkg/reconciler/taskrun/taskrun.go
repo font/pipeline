@@ -233,7 +233,7 @@ func (c *Reconciler) getTaskResolver(tr *v1beta1.TaskRun) (*resources.LocalTaskR
 	return resolver, kind
 }
 
-func (c *Reconciler) signTaskRun(tr *v1alpha1.TaskRun, rtr *resources.ResolvedTaskResources) ([]byte, error) {
+func (c *Reconciler) signTaskRun(tr *v1beta1.TaskRun, rtr *resources.ResolvedTaskResources) ([]byte, error) {
 	if c.signer == nil {
 		c.Logger.Debug("Not signing taskrun, signer is not configured")
 		return nil, nil
@@ -256,7 +256,7 @@ func (c *Reconciler) signTaskRun(tr *v1alpha1.TaskRun, rtr *resources.ResolvedTa
 	return signature, nil
 }
 
-func createPayload(tr *v1alpha1.TaskRun, rtr *resources.ResolvedTaskResources) in_toto.Link {
+func createPayload(tr *v1beta1.TaskRun, rtr *resources.ResolvedTaskResources) in_toto.Link {
 	l := in_toto.Link{
 		Type: "_link",
 	}
@@ -485,7 +485,7 @@ func (c *Reconciler) reconcile(ctx context.Context, tr *v1beta1.TaskRun,
 					continue
 				}
 				c.Logger.Infof("Checking if pr %s is signable", pr.GetName())
-				if signable, ok := pr.(v1alpha1.Signable); ok {
+				if signable, ok := pr.(v1beta1.Signable); ok {
 					if err := signable.AttachSignature(c.signer, tr, c.Logger); err != nil {
 						c.Logger.Errorf("error attachingg signature to resource: %v", err)
 					}

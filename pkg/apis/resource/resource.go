@@ -33,11 +33,7 @@ import (
 // FromType returns an instance of the correct PipelineResource object type which can be
 // used to add input and output containers as well as volumes to a TaskRun's pod in order to realize
 // a PipelineResource in a pod.
-<<<<<<< HEAD
-func FromType(r *resourcev1alpha1.PipelineResource, images pipeline.Images) (pipelinev1beta1.PipelineResourceInterface, error) {
-=======
-func FromType(name string, r *resourcev1alpha1.PipelineResource, images pipeline.Images) (pipelinev1alpha1.PipelineResourceInterface, error) {
->>>>>>> 76a9c304... In-toto.
+func FromType(name string, r *resourcev1alpha1.PipelineResource, images pipeline.Images) (pipelinev1beta1.PipelineResourceInterface, error) {
 	switch r.Spec.Type {
 	case resourcev1alpha1.PipelineResourceTypeGit:
 		return git.NewResource(name, images.GitImage, r)
