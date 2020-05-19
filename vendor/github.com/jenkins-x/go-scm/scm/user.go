@@ -12,7 +12,6 @@ import (
 type (
 	// User represents a user account.
 	User struct {
-		ID      int
 		Login   string
 		Name    string
 		Email   string

@@ -88,17 +88,3 @@ func encodePullRequestListOptions(opts scm.PullRequestListOptions) string {
 	}
 	return params.Encode()
 }
-
-func encodePullRequestMergeOptions(opts *scm.PullRequestMergeOptions) *pullRequestMergeRequest {
-	mr := &pullRequestMergeRequest{}
-	if opts.MergeMethod != "" {
-		mr.MergeMethod = opts.MergeMethod
-	}
-	if opts.CommitTitle != "" {
-		mr.CommitTitle = opts.CommitTitle
-	}
-	if opts.SHA != "" {
-		mr.SHA = opts.SHA
-	}
-	return mr
-}
